@@ -22,7 +22,7 @@ public class Principal {
 		Cliente cl2 = new Cliente("Armiliana", "V99 444","015.323.999-65");
 		Endereco end = new Endereco("Pedro II", 1394, "(83)9 9989-5043");
 		System.out.println("---Sejam Bem vindo--- \n\n" + bb + ag + cc + cl1+ end);
-		
+		// usar cl2
 		
 		// usando a estrutura if else do while
 		
@@ -32,6 +32,7 @@ public class Principal {
 			System.out.println("Tecla [1] Para dépositar :\n");
 			System.out.println("Tecle [2] para Sacar\n");
 			System.out.println("Tecle [3] para Sair\n");
+			
 			
 			Scanner sc = new Scanner(System.in);
 			int opcao ; // inicializando a opção
