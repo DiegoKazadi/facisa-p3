@@ -13,7 +13,11 @@ public class Teste {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Create object conta
+		
+		ContaCorrente cc = new ContaCorrente(123, 234, 250, " Diego");
+		
+		cc.sacar(300);
 
 	}
 
