@@ -1,0 +1,74 @@
+/**
+ * 
+ */
+package br.cesed.si.p3.dequeus;
+
+import java.util.Arrays;
+
+/**
+ * @author aluno
+ *
+ */
+public class Dequeus {
+	private int inseridos;
+	
+	private Object[] dequeus;
+
+	/**
+	 * 
+	 */
+	public Dequeus() {
+		super();
+		this.inseridos = 3;
+		this.dequeus = new Object[inseridos];
+	
+	}
+	/**
+	 * Método que addiciona os objectos no inicio da lista e vai duplicar o seu tamanho quando este atinge o seu limite
+	 * @param obj
+	 */
+	public void addInicio(Object obj){
+		if (inseridos == dequeus.length){
+			Object [] dequeusMaior = new Object[dequeus.length * 2];
+			
+			for (int i = 0; i < dequeus.length; i++) {
+				dequeusMaior[i] = dequeus[i];
+				
+			}
+			dequeus = dequeusMaior;
+		}
+		
+		for (int i = 0; i < dequeus.length; i++) {
+			dequeus[i++] = obj;
+		}
+		inseridos ++;
+	}
+	/**
+	 * Método que addiciona os objectos no final da lista e vai duplicar o seu tamanho quando este atinge o seu limite
+	 * @param obj
+	 */
+	public void addFinal(Object obj){
+		if (inseridos == dequeus.length){
+			Object [] dequeusMaior = new Object[dequeus.length * 2];
+			
+			for (int i = 0; i < dequeus.length; i++) {
+				dequeusMaior[i] = dequeus[i];
+				
+			}
+			dequeus = dequeusMaior;
+		}
+		
+		dequeus[dequeus.length -1] = obj;
+		
+	}
+	/**Método para remover o elemento de Dequeu na primeira posição
+	 * 
+	 * @param Elemento
+	 */
+	
+	@Override
+	public String toString() {
+		return "Dequeu contem " + inseridos + ", dequeus=" + Arrays.toString(dequeus) + "\n";
+	}
+	
+}

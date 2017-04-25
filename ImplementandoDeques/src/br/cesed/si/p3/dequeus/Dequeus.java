@@ -5,6 +5,7 @@ package br.cesed.si.p3.dequeus;
 
 import java.util.Arrays;
 
+
 /**
  * @author aluno
  *
@@ -21,8 +22,16 @@ public class Dequeus {
 		super();
 		this.inseridos = 3;
 		this.dequeus = new Object[inseridos];
-	
 	}
+	/**
+	 * Return the size of Dequeu.
+	 * 
+	 * @return
+	 */
+	public int size() {
+		return inseridos;
+	}
+	
 	/**
 	 * Método que addiciona os objectos no inicio da lista e vai duplicar o seu tamanho quando este atinge o seu limite
 	 * @param obj
@@ -37,12 +46,10 @@ public class Dequeus {
 			}
 			dequeus = dequeusMaior;
 		}
-		Object [] dequeusMaior = new Object[dequeus.length+1];
+		
 		for (int i = 0; i < dequeus.length; i++) {
-			dequeusMaior[i+1] = dequeus[i];
+			dequeus[i++] = obj;
 		}
-		dequeusMaior[0] = obj;
-		dequeus = dequeusMaior;
 		inseridos ++;
 	}
 	/**
@@ -60,12 +67,23 @@ public class Dequeus {
 			dequeus = dequeusMaior;
 		}
 		
-		dequeus[inseridos] = obj;
-		inseridos ++;
+		dequeus[dequeus.length -1] = obj;
+		
 	}
+	/**Método para imprimir todos elementos de Dequeu 
+	 * 
+	 * @param 
+	 */
+	public void exibeAllElemento(){
+		
+		for(Object obj: dequeus){
+			System.out.println(obj);
+		}
+	}
+	
 	@Override
 	public String toString() {
-		return "Dequeus contem " + inseridos + ", dequeus=" + Arrays.toString(dequeus) + "]";
+		return "Dequeu contem " + inseridos + ", dequeus=" + Arrays.toString(dequeus) + "\n";
 	}
 	
 }
