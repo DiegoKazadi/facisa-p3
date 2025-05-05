@@ -1,115 +1,102 @@
 package br.cesed.si.p3.arrays.atividade;
+
 import java.util.Arrays;
+
 /**
- * Class for my own implementation of ArrayList
+ * Classe que simula uma implementação simplificada de um ArrayList.
+ * Permite adicionar, remover, buscar e imprimir elementos.
  * 
- * @author diego
- *
+ * @author Diego
  */
 public class ArrayListFacisa {
 
-	private int tamanho;
-	private Object [] ArrayListFacisa ;
-	 
+	private Object[] elementos; // Vetor de objetos
+	private int size = 0;       // Quantidade real de elementos armazenados
 
 	/**
-	 * Constructor 
+	 * Construtor que inicializa o array com tamanho fixo.
 	 * 
-	 * @param tamanho the initial size of ArrayList
+	 * @param capacidade capacidade inicial do ArrayList
 	 */
-	public ArrayListFacisa(int tamanho) {
-		this.tamanho = tamanho;
-		this.ArrayListFacisa = new Object [tamanho];
+	public ArrayListFacisa(int capacidade) {
+		elementos = new Object[capacidade];
 	}
-	
+
 	/**
-	 * Return the size of ArrayList.
+	 * Retorna o número de elementos armazenados (não nulos).
 	 * 
-	 * @return
+	 * @return tamanho atual da lista
 	 */
 	public int size() {
-		int contador = 0;
-		for (int i = 0; i < ArrayListFacisa.length ; i++) {
-			
-			if(ArrayListFacisa[i] != null){
-				contador += 1;
-			}
-		}
-		return contador;
+		return size;
 	}
-	
+
 	/**
-	 * Add an object
+	 * Adiciona um objeto ao final da lista.
 	 * 
-	 * @param obj
+	 * @param obj objeto a ser adicionado
 	 */
 	public void add(Object obj) {
-		for (int i = 0; i < ArrayListFacisa.length ; i++) {
-			if (ArrayListFacisa[i] == null){
-				ArrayListFacisa[i] = obj;
-			}
-
+		if (size == elementos.length) {
+			// Dobra o tamanho do array caso esteja cheio
+			elementos = Arrays.copyOf(elementos, elementos.length * 2);
 		}
+		elementos[size++] = obj;
 	}
-	
+
 	/**
-	 * Remove an object
+	 * Remove a primeira ocorrência de um objeto na lista.
 	 * 
-	 * @param obj
+	 * @param obj objeto a ser removido
 	 */
 	public void remove(Object obj) {
-		Object [] ArrayListFacisa2 = new Object [size()];
-		int contador = 0;
-		int contador2 = 0;
-		for (int i = 0; i < ArrayListFacisa.length; i++) {
-			if(ArrayListFacisa.equals(obj)){
-				contador2 += 1;
+		for (int i = 0; i < size; i++) {
+			if (elementos[i].equals(obj)) {
+				// Move os elementos seguintes uma posição à esquerda
+				for (int j = i; j < size - 1; j++) {
+					elementos[j] = elementos[j + 1];
+				}
+				elementos[--size] = null; // Remove o último duplicado e ajusta o tamanho
+				return;
 			}
-			
 		}
-		ArrayListFacisa2[contador2] = null;
-		
-		
-		for (int i = 0; i < ArrayListFacisa.length; i++){
-			Object ob = ArrayListFacisa[i];
-			
-			if(! ob.equals(null)){ //encotrar elemento null no Array
-				ArrayListFacisa2[contador] = ob;
-				contador +=1;
-								
-			}
-			ArrayListFacisa = ArrayListFacisa2;		
-		}
-		
 	}
-	
+
 	/**
-	 * Get the object by index.
+	 * Retorna o objeto da posição indicada.
 	 * 
-	 * For example, if I pass index as 0, this method will return the persisted value at first position of Array.
-	 *  
-	 * @param index index in Array
+	 * @param index índice desejado
+	 * @return objeto na posição ou null se inválido
 	 */
 	public Object getByIndex(int index) {
-		
+		if (index >= 0 && index < size) {
+			return elementos[index];
+		}
 		return null;
 	}
 
 	/**
-	 * Check the position of the informed object.
+	 * Retorna a posição do objeto informado ou -1 se não encontrar.
 	 * 
-	 * @param obj
-	 * @return
+	 * @param obj objeto a ser buscado
+	 * @return índice do objeto ou -1
 	 */
 	public int findPosition(Object obj) {
-		
-		return 0;
+		for (int i = 0; i < size; i++) {
+			if (elementos[i].equals(obj)) {
+				return i;
+			}
+		}
+		return -1;
 	}
-	
+
+	/**
+	 * Imprime todos os elementos da lista.
+	 */
 	public void printAllElements() {
-		
+		System.out.println("Elementos na lista:");
+		for (int i = 0; i < size; i++) {
+			System.out.println(elementos[i]);
+		}
 	}
-	
-	
-	
 }
